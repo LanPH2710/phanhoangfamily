@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,21 +12,22 @@
 
         // Cấu hình Firebase (Thay bằng thông tin của bạn)
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com/",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            apiKey: "AIzaSyCJoQ8LTtA-xrx0CiJ0bl3DwFdqJmSIpXQ",
+            authDomain: "phan-hoang-family-cbf29.firebaseapp.com",
+            databaseURL: "https://phan-hoang-family-cbf29-default-rtdb.asia-southeast1.firebasedatabase.app/", // Thay vào đây
+            projectId: "phan-hoang-family-cbf29",
+            storageBucket: "phan-hoang-family-cbf29.appspot.com",
             messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            appId: "1:1058038129752:web:3023db2cae2941ac9e162d"
         };
+
 
         // Khởi tạo Firebase
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
         // Hàm thêm thành viên mới
-        window.addMember = function() {
+        window.addMember = function () {
             let name = document.getElementById("name").value;
             let role = document.getElementById("role").value;
 
@@ -61,15 +63,16 @@
         });
 
         // Xóa thành viên
-        window.deleteMember = function(key) {
+        window.deleteMember = function (key) {
             remove(ref(db, "family/" + key));
         };
     </script>
 </head>
+
 <body>
     <h2>Danh sách thành viên gia đình</h2>
     <div id="familyList"></div>
-    
+
     <h3>Thêm thành viên mới</h3>
     <input type="text" id="name" placeholder="Tên">
     <select id="role">
@@ -79,4 +82,5 @@
     </select>
     <button onclick="addMember()">Thêm</button>
 </body>
+
 </html>
