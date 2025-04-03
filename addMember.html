@@ -1,61 +1,82 @@
-<script type="module">
-    // // Import Firebase SDK
-    // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-    // import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gia Phả Gia Đình</title>
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+        import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
-    // // Cấu hình Firebase
-    // const firebaseConfig = {
-    //     apiKey: "AIzaSyXXXXX-XXXXXXX", // Thay bằng API Key của bạn
-    //     authDomain: "phan-hoang-family.firebaseapp.com",
-    //     databaseURL: "https://phan-hoang-family-default-rtdb.firebaseio.com/",
-    //     projectId: "phan-hoang-family",
-    //     storageBucket: "phan-hoang-family.appspot.com",
-    //     messagingSenderId: "592111715492",
-    //     appId: "1:592111715492:web:d2cdb97844e505c2c81231"
-    // };
+        // Cấu hình Firebase (Thay bằng thông tin của bạn)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com/",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-    // // Khởi tạo Firebase
-    // const app = initializeApp(firebaseConfig);
-    // const db = getDatabase(app);
+        // Khởi tạo Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-    // // Hàm thêm thành viên mới
-    // window.addMember = function() {
-    //     let name = document.getElementById("name").value;
-    //     let role = document.getElementById("role").value;
+        // Hàm thêm thành viên mới
+        window.addMember = function() {
+            let name = document.getElementById("name").value;
+            let role = document.getElementById("role").value;
 
-    //     if (name.trim() === "") {
-    //         alert("Vui lòng nhập tên!");
-    //         return;
-    //     }
+            if (name.trim() === "") {
+                alert("Vui lòng nhập tên!");
+                return;
+            }
 
-    //     const newMemberRef = push(ref(db, "family"));
-    //     set(newMemberRef, {
-    //         name: name,
-    //         role: role
-    //     }).then(() => {
-    //         document.getElementById("name").value = "";
-    //     });
-    // };
-
-    // Hiển thị danh sách thành viên
-    onValue(ref(db, "family"), (snapshot) => {
-        let data = snapshot.val();
-        let output = "";
-
-        if (data) {
-            Object.keys(data).forEach((key) => {
-                output += `<p>${data[key].name} - ${data[key].role} 
-                    <button onclick="deleteMember('${key}')">Xóa</button></p>`;
+            const newMemberRef = push(ref(db, "family"));
+            set(newMemberRef, {
+                name: name,
+                role: role
+            }).then(() => {
+                document.getElementById("name").value = "";
             });
-        } else {
-            output = "<p>Chưa có thành viên nào.</p>";
-        }
+        };
 
-        document.getElementById("familyList").innerHTML = output;
-    });
+        // Hiển thị danh sách thành viên
+        onValue(ref(db, "family"), (snapshot) => {
+            let data = snapshot.val();
+            let output = "";
 
-    // Xóa thành viên
-    window.deleteMember = function(key) {
-        remove(ref(db, "family/" + key));
-    };
-</script>
+            if (data) {
+                Object.keys(data).forEach((key) => {
+                    output += `<p>${data[key].name} - ${data[key].role} 
+                        <button onclick="deleteMember('${key}')">Xóa</button></p>`;
+                });
+            } else {
+                output = "<p>Chưa có thành viên nào.</p>";
+            }
+
+            document.getElementById("familyList").innerHTML = output;
+        });
+
+        // Xóa thành viên
+        window.deleteMember = function(key) {
+            remove(ref(db, "family/" + key));
+        };
+    </script>
+</head>
+<body>
+    <h2>Danh sách thành viên gia đình</h2>
+    <div id="familyList"></div>
+    
+    <h3>Thêm thành viên mới</h3>
+    <input type="text" id="name" placeholder="Tên">
+    <select id="role">
+        <option value="Father">Cha</option>
+        <option value="Mother">Mẹ</option>
+        <option value="Child">Con</option>
+    </select>
+    <button onclick="addMember()">Thêm</button>
+</body>
+</html>
