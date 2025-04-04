@@ -1,0 +1,231 @@
+/* .hero-section{
+    height: 100vh;
+} */
+/* home image */
+.landing-img {
+    max-width: 100%;
+    /* Đảm bảo ảnh không vượt quá chiều rộng của khung chứa */
+    height: auto;
+    /* Duy trì tỷ lệ khung hình gốc */
+    display: block;
+    /* Tránh khoảng trắng dưới ảnh */
+    margin: 0 auto;
+    /* Căn giữa ảnh nếu cần */
+    margin-bottom: 10px;
+}
+
+.about-family {
+    padding-top: 50px;
+    max-width: 100%;
+    /* Đảm bảo ảnh không vượt quá chiều rộng của khung chứa */
+    height: 100vh;
+    /* Duy trì tỷ lệ khung hình gốc */
+    display: flex;
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    text-align: center;
+    /* Căn giữa nội dung của đoạn văn */
+    background-color: #f4f4f4;
+    /* Màu nền nhẹ */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:opsz,wght@14..32,100..900&family=Roboto+Condensed:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap');
+
+.family-news {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(#ECEFFE, #CED6FB);
+}
+
+.card-wrapper {
+    max-width: 1100px;
+    margin: 0 60px 35px;
+    padding: 20px 10px;
+    overflow: hidden;
+}
+
+.card-list .card-item {
+    list-style: none;
+}
+
+.card-list .card-item .card-link {
+    user-select: none;
+    display: block;
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.2s ease;
+}
+
+.card-list .card-item .card-link:active {
+    cursor: grabbing;
+}
+
+.card-list .card-item .card-link:hover {
+    border-color: green;
+}
+
+.card-list .card-link .card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-list .card-link .badge {
+    color: green;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 16px 0 18px;
+    background: #DDE4FF;
+    width: fit-content;
+    border-radius: 50px;
+}
+
+.card-list .card-link .badge.p1 {
+    color: skyblue;
+    background: #dff5f7;
+}
+
+.card-list .card-link .badge.p2 {
+    color: red;
+    background: #F7DFF5;
+}
+
+.card-list .card-link .badge.p1 {
+    color: purple;
+    background: #F7DFF5;
+}
+
+.card-list .card-link .badge.p1 {
+    color: yellow;
+    background: #f2f7df;
+}
+
+
+
+.card-list .card-link .card-title {
+    font-size: 1.19rem;
+    color: black;
+    font-weight: 600;
+}
+
+.card-list .card-link .card-button {
+
+    height: 35px;
+    width: 35px;
+    color: green;
+    border-radius: 50%;
+    margin: 30px 0 5px;
+    background: none;
+    cursor: pointer;
+    border: 2px solid green;
+    transform: rotate(-45deg);
+    transition: 0.4s ease;
+}
+
+
+.card-list .card-link:hover .card-button {
+    color: #fff;
+    background: green;
+}
+
+.card-wrapper .swiper-pagination-bullet {
+    height: 13px;
+    width: 13px;
+    opacity: 0.5;
+    background: green;
+}
+
+.card-wrapper .swiper-pagination-bullet-active{
+    opacity: 1;
+}
+
+.card-wrapper .swiper-slide-button{
+    color: green;
+    margin-top: -35px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-wrapper {
+        margin: 0 10px 25px;
+    }
+
+    .card-wrapper .swiper-slide-button{
+        display: none;
+    }
+}
+
+
+
+.slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3991f5;
+    padding: 40px 0;
+    height: 100vh;
+  }
+  
+  .slide-con {
+    width: 100vmin;
+    overflow: hidden;
+    border: 20px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 10px 25px 30px rgba(30, 30, 200, 0.3);
+  }
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    animation: slide 8s infinite;
+  }
+  .slide-img {
+    width: 100%;
+  }
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    33% {
+      transform: translateX(0);
+    }
+    38% {
+      transform: translateX(-100%);
+    }
+    66% {
+      transform: translateX(-100%);
+    }
+    71% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(-200%);
+    }
+  }

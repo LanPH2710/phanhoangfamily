@@ -1,26 +1,98 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ</title>
+    <!-- css link start -->
+    <link rel="stylesheet" href="css/home.css">
+    <!-- css link end -->
+    <title>Gia Phả Gia Đình</title>
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+        import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+
+        // Cấu hình Firebase (Thay bằng thông tin của bạn)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJoQ8LTtA-xrx0CiJ0bl3DwFdqJmSIpXQ",
+            authDomain: "phan-hoang-family-cbf29.firebaseapp.com",
+            databaseURL: "https://phan-hoang-family-cbf29-default-rtdb.asia-southeast1.firebasedatabase.app/", // Thay vào đây
+            projectId: "phan-hoang-family-cbf29",
+            storageBucket: "phan-hoang-family-cbf29.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "1:1058038129752:web:3023db2cae2941ac9e162d"
+        };
+
+
+        // Khởi tạo Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Hàm thêm thành viên mới
+        window.addMember = function () {
+            let name = document.getElementById("name").value;
+            let role = document.getElementById("role").value;
+
+            if (name.trim() === "") {
+                alert("Vui lòng nhập tên!");
+                return;
+            }
+
+            const newMemberRef = push(ref(db, "family"));
+            set(newMemberRef, {
+                name: name,
+                role: role
+            }).then(() => {
+                document.getElementById("name").value = "";
+            });
+        };
+
+        // Hiển thị danh sách thành viên
+        onValue(ref(db, "family"), (snapshot) => {
+            let data = snapshot.val();
+            let output = "";
+
+            if (data) {
+                Object.keys(data).forEach((key) => {
+                    output += `<p>${data[key].name} - ${data[key].role} 
+                        <button onclick="deleteMember('${key}')">Xóa</button></p>`;
+                });
+            } else {
+                output = "<p>Chưa có thành viên nào.</p>";
+            }
+
+            document.getElementById("familyList").innerHTML = output;
+        });
+
+        // Xóa thành viên
+        window.deleteMember = function (key) {
+            remove(ref(db, "family/" + key));
+        };
+    </script>
 </head>
+
 <body>
+    <div id="header" style="position: sticky; top: 0;z-index: 1000;"></div> <!-- Header sẽ được load ở đây -->
+    <div>
+        <h1>PHAN GIA THẾ PHỔ</h1> <br>
+        <h3>Gia phả họ Phan</h3>
+    </div>
+    <h2>Danh sách thành viên gia đình</h2>
+    <div id="familyList"></div>
 
-    <div id="header"></div>  <!-- Header sẽ được load ở đây -->
+    <h3>Thêm thành viên mới</h3>
+    <input type="text" id="name" placeholder="Tên">
+    <select id="role">
+        <option value="Father">Cha</option>
+        <option value="Mother">Mẹ</option>
+        <option value="Child">Con</option>
+    </select>
+    <button onclick="addMember()">Thêm</button>
 
-    <main>
-        <div>
-            <h1>PHAN GIA THẾ PHỔ</h1>
-        <p>Gia phả họ Phan</p>
-        </div>
-        <div>
-            
-        </div>
-    </main>
+    <div id="footer"></div> <!-- Footer sẽ được load ở đây -->
 
-    <div id="footer"></div>  <!-- Footer sẽ được load ở đây -->
-
+    <!-- script to include header and footer -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             fetch("header.html")
@@ -36,6 +108,8 @@
                 });
         });
     </script>
-
+    <!-- script for header auto active button -->
+    <script src="js/header.js"></script>
 </body>
+
 </html>

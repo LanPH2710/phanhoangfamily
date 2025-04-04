@@ -3,8 +3,10 @@
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 20px 10px;
+  /* background-color: rgba(0, 0, 0, 0.05); */
+  background-color: #f8f9fa;
+  padding: 15px 10px;
+  
 }
 
 /* Style the header links */
@@ -142,6 +144,8 @@
   }
   
 /* footer end */
+
+
 
 
 
