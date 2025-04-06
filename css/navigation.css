@@ -57,6 +57,35 @@
 }
 
 /* header end */
+.header .icon {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .header a:not(.logo):not(.icon) {
+    display: none;
+  }
+
+  .header .icon {
+    display: block;
+  }
+
+  .header.responsive .header-right {
+    display: block;
+    width: 100%;
+  }
+
+  .header.responsive .header-right a {
+    display: block;
+    text-align: left;
+    padding: 12px;
+  }
+}
 
 
 /* footer start */

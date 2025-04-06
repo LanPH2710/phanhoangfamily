@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
+    
     // Fetch header.html và chèn vào trang
     fetch("header.html")
         .then(response => response.text())
@@ -30,3 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+function toggleMenu() {
+    const header = document.getElementById("myHeader");
+    header.classList.toggle("responsive");
+}
