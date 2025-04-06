@@ -229,3 +229,59 @@
       transform: translateX(-200%);
     }
   }
+
+  @media screen and (max-width: 768px) {
+    /* About section: full height scrollable, padding giảm */
+    .about-family {
+        flex-direction: column;
+        height: auto;
+        padding: 30px 15px;
+        text-align: center;
+    }
+
+    /* Slide section */
+    .slide {
+        padding: 20px 0;
+        height: auto;
+    }
+
+    .slide-con {
+        width: 90%;
+        border: 10px solid #ffffff;
+    }
+
+    .wrapper {
+        animation: slide 12s infinite; /* chậm hơn cho người dùng mobile */
+    }
+
+    /* Card section */
+    .family-news {
+        flex-direction: column;
+        padding: 20px 10px;
+        min-height: auto;
+    }
+
+    .card-wrapper {
+        margin: 0 10px 25px;
+        padding: 10px 5px;
+    }
+
+    .card-list .card-link .card-title {
+        font-size: 1rem;
+    }
+
+    .card-list .card-link .badge {
+        font-size: 0.8rem;
+        margin: 12px 0;
+    }
+
+    .card-list .card-link .card-button {
+        height: 30px;
+        width: 30px;
+        margin: 20px 0 5px;
+    }
+
+    .card-wrapper .swiper-slide-button {
+        display: none;
+    }
+}
